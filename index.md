@@ -6,4 +6,4 @@ Love to thinker with code, over the last years I have mostly been fascinated wit
 
 # About this account
 
-This is my personal account, controlled by me. This is account is also linked to my work addresses. If you are unsure if a contribution is made by me as a private citizen or me as an representative of my employer check the email in the commit.
+This is my personal account, controlled by me. This is account is also linked to my work addresses. If you are unsure if a contribution is made by me as a private citizen or me as an representative of my employer, check the email in the commit. I'm careful to commit with the right identity.
