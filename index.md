@@ -1,6 +1,6 @@
 # About Me
 
-I'm a system administrator that works in the devops-spectrum of the trade. I work with servers and whatever solves my problem. I work with the software stack building clusters, container management and crazy contraptions. From time to time, I also do some development.
+I'm a product owner with a history of system administraton that works in the devops-spectrum of the trade. I work with servers and whatever solves my problem. I use the software stack building clusters, container management and crazy contraptions. From time to time, I also do some development.
 
 I Love to thinker with code and tweak systems. Over the last years I have mostly been fascinated with LXD, Snapcraft, Ansible, Docker, High Availability, Clusters, Automation and I'm trying to learn to program the GPU (OpenGL). I have been working with everything from tiny tings up to large clusters in data centers.
 
