@@ -185,7 +185,7 @@
     .level {
       --tone: #59636e;
       display: grid;
-      grid-template-columns: 9.5rem 1fr;
+      grid-template-columns: 9.5rem minmax(0, 1fr);
       min-height: 18rem;
       border-bottom: 1px solid var(--line);
       background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 8%, transparent), transparent 40%);
@@ -201,7 +201,7 @@
     .level--mostly { --tone: #c05a18; }
     .level--vibe { --tone: #bd3266; }
 
-    .level__side { padding: 1.7rem 1.5rem; border-right: 1px solid var(--line); }
+    .level__side { min-width: 0; padding: 1.7rem 1.5rem; border-right: 1px solid var(--line); }
     .level__number { display: block; color: var(--tone); font: 800 1.35rem/1 var(--code); }
     .level__mode {
       display: block;
@@ -212,7 +212,7 @@
       text-transform: uppercase;
     }
 
-    .level__body { padding: 1.7rem; }
+    .level__body { min-width: 0; padding: 1.7rem; }
     .level__top { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
     .level h3 {
       margin: 0;
@@ -223,6 +223,8 @@
     .definition { max-width: 50rem; margin: 0.85rem 0 1.5rem; color: #b8c0cc; }
 
     .snippet {
+      min-width: 0;
+      max-width: 100%;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 0.65rem;
@@ -257,6 +259,7 @@
     .copy[data-copied="true"] { color: #8ff0ae; border-color: #286f42; }
 
     pre {
+      max-width: 100%;
       margin: 0;
       padding: 0.9rem 1rem;
       overflow-x: auto;
@@ -312,7 +315,7 @@
     @media (max-width: 760px) {
       .hero__layout { grid-template-columns: 1fr; }
       .hero-art { width: min(80%, 24rem); margin: 0 auto; }
-      .level { grid-template-columns: 1fr; }
+      .level { grid-template-columns: minmax(0, 1fr); }
       .level__side { padding: 1.1rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line); }
       .level__number, .level__mode { display: inline; }
       .level__mode { margin-left: 0.75rem; }
