@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="98" height="20" role="img" aria-label="AI usage: vibe">
+  <title>AI usage: vibe</title>
+  <defs>
+    <clipPath id="r"><rect width="98" height="20" rx="3"/></clipPath>
+    <linearGradient id="v" x1="0" x2="1">
+      <stop stop-color="#7028df"/>
+      <stop offset=".48" stop-color="#c02665"/>
+      <stop offset="1" stop-color="#f06b16"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="60" height="20" fill="#30343d"/>
+    <rect x="60" width="38" height="20" fill="url(#v)"/>
+    <path d="M78-5h6L73 25h-6z" fill="#fff" opacity=".08"/>
+    <path d="M64 0l1.1 3.2L68 4l-2.9.8L64 8l-1.1-3.2L60 4l2.9-.8z" fill="#fff" opacity=".55"/>
+    <path d="M91 0l.8 2.3L94 3l-2.2.7L91 6l-.8-2.3L88 3l2.2-.7z" fill="#fff5bc" opacity=".5"/>
+    <path d="M84 13l.8 2.3L87 16l-2.2.7L84 19l-.8-2.3L81 16l2.2-.7z" fill="#dae2ff" opacity=".44"/>
+    <circle cx="69" cy="15" r="1" fill="#ffec9e" opacity=".48"/>
+    <circle cx="76" cy="4" r=".8" fill="#fff" opacity=".4"/>
+    <circle cx="95" cy="15" r=".8" fill="#fff5bc" opacity=".48"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="11" font-weight="600">
+    <text x="30" y="15" fill="#010101" fill-opacity=".3">AI usage</text>
+    <text x="30" y="14">AI usage</text>
+    <text x="79" y="15" fill="#010101" fill-opacity=".3">vibe</text>
+    <text x="79" y="14">vibe</text>
+  </g>
+</svg>

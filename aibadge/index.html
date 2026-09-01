@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI usage badges — nsg</title>
+  <meta name="description" content="The self-reported badges I use to disclose how generative AI contributed to my software repositories.">
+  <meta name="author" content="Stefan Berggren">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0e14">
+  <link rel="canonical" href="https://nsg.github.io/aibadge/">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nsg.github.io/aibadge/">
+  <meta property="og:title" content="AI usage badges — nsg">
+  <meta property="og:description" content="A self-reported way to describe how generative AI contributed to one of my repositories.">
+  <script>document.documentElement.classList.add("js");</script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #0b0e14;
+      --surface: #11151d;
+      --surface-2: #161b25;
+      --ink: #f2f5fa;
+      --muted: #9ca6b5;
+      --quiet: #717d8e;
+      --line: #29313e;
+      --line-strong: #3b4657;
+      --accent: #aeb6ff;
+      --focus: #ffcf67;
+      --code: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5.5rem;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% -12rem, rgba(91, 101, 255, 0.17), transparent 38rem),
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        var(--page);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+      font: 400 1rem/1.65 var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    button, code { font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+    ::selection { color: #0b0e14; background: #b9c0ff; }
+
+    .wrap { width: min(100% - 2rem, 70rem); margin-inline: auto; }
+
+    .skip {
+      position: fixed;
+      z-index: 100;
+      top: -5rem;
+      left: 1rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 0.45rem;
+      color: #0b0e14;
+      background: var(--focus);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .skip:focus { top: 1rem; }
+
+    .site-head {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      border-bottom: 1px solid rgba(41, 49, 62, 0.82);
+      background: rgba(11, 14, 20, 0.82);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+
+    .site-head .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      min-height: 4.35rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font: 700 0.78rem/1 var(--code);
+      letter-spacing: 0.14em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .brand__mark {
+      display: grid;
+      width: 1.75rem;
+      height: 1.75rem;
+      place-items: center;
+      border: 1px solid #505a6c;
+      border-radius: 0.45rem;
+      color: var(--accent);
+      background: #181d27;
+      font-size: 1rem;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      color: var(--muted);
+      font: 600 0.72rem/1 var(--code);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--ink); }
+
+    main { padding-bottom: 5rem; }
+
+    .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 7rem); }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font: 700 0.75rem/1.3 var(--code);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 760;
+      letter-spacing: -0.07em;
+      line-height: 0.92;
+      text-wrap: balance;
+    }
+
+    .lede {
+      max-width: 44rem;
+      margin: 1.8rem 0 0;
+      color: #c2c9d4;
+      font-size: clamp(1.06rem, 2vw, 1.3rem);
+      line-height: 1.55;
+    }
+
+    .badge-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 2rem;
+    }
+
+    .badge-strip a, .badge-link { display: inline-block; border-radius: 3px; text-decoration: none; }
+    .badge-strip img, .badge-link img { width: auto; height: 20px; }
+
+    .scope {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: clamp(3rem, 7vw, 5rem);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: rgba(17, 21, 29, 0.86);
+    }
+
+    .scope > div { padding: 1.5rem; }
+    .scope > div + div { border-left: 1px solid var(--line); }
+    .scope h2, .scope p { margin: 0; }
+    .scope h2 {
+      margin-bottom: 0.55rem;
+      font: 700 0.72rem/1.2 var(--code);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .scope p { color: var(--muted); font-size: 0.9rem; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(18rem, 34rem);
+      align-items: end;
+      gap: 2rem;
+      margin-bottom: 1.6rem;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .levels {
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: rgba(17, 21, 29, 0.9);
+      box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.25);
+    }
+
+    .level {
+      --tone: #59636e;
+      display: grid;
+      grid-template-columns: 9.5rem 1fr;
+      min-height: 18rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 8%, transparent), transparent 40%);
+    }
+    .level:last-child { border-bottom: 0; }
+    .level:target {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 19%, transparent), transparent 55%);
+      box-shadow: inset 3px 0 0 var(--tone);
+    }
+    .level--no { --tone: #59636e; }
+    .level--assist { --tone: #2869d8; }
+    .level--co-written { --tone: #7048c7; }
+    .level--mostly { --tone: #c05a18; }
+    .level--vibe { --tone: #bd3266; }
+
+    .level__side { padding: 1.7rem 1.5rem; border-right: 1px solid var(--line); }
+    .level__number { display: block; color: var(--tone); font: 800 1.35rem/1 var(--code); }
+    .level__mode {
+      display: block;
+      margin-top: 0.65rem;
+      color: var(--muted);
+      font: 600 0.68rem/1.45 var(--code);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .level__body { padding: 1.7rem; }
+    .level__top { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .level h3 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+    .definition { max-width: 50rem; margin: 0.85rem 0 1.5rem; color: #b8c0cc; }
+
+    .snippet {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 0.65rem;
+      background: #0b0e14;
+    }
+    .snippet__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 2.5rem;
+      padding: 0.45rem 0.55rem 0.45rem 0.8rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--quiet);
+      font: 600 0.66rem/1 var(--code);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .copy {
+      display: none;
+      padding: 0.42rem 0.65rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 0.4rem;
+      color: #d7dce5;
+      background: var(--surface-2);
+      font: 700 0.67rem/1 var(--code);
+      cursor: pointer;
+    }
+    .js .copy { display: inline-flex; }
+    .copy:hover { color: #fff; border-color: #626f82; }
+    .copy[data-copied="true"] { color: #8ff0ae; border-color: #286f42; }
+
+    pre {
+      margin: 0;
+      padding: 0.9rem 1rem;
+      overflow-x: auto;
+      color: #dbe1eb;
+      font: 0.76rem/1.6 var(--code);
+      scrollbar-color: var(--line-strong) transparent;
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+      margin-top: clamp(4rem, 9vw, 7rem);
+    }
+
+    .panel {
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgba(17, 21, 29, 0.88);
+    }
+    .panel__eyebrow {
+      margin: 0 0 0.7rem;
+      color: var(--accent);
+      font: 700 0.7rem/1 var(--code);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .panel h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.04em; line-height: 1.08; }
+    .panel > p:not(.panel__eyebrow) { margin: 1rem 0 0; color: var(--muted); }
+
+    .steps { display: grid; margin: 1.6rem 0 0; padding: 0; list-style: none; counter-reset: steps; }
+    .steps li {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr;
+      gap: 0.8rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+      counter-increment: steps;
+    }
+    .steps li::before { content: "0" counter(steps); color: var(--accent); font: 700 0.72rem/1.6 var(--code); }
+    .steps strong { display: block; margin-bottom: 0.15rem; }
+    .steps span { color: var(--muted); font-size: 0.9rem; }
+
+    .fine-print { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--quiet); font-size: 0.8rem; }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.5rem 0 2.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--quiet);
+      font: 0.72rem/1.5 var(--code);
+    }
+    footer a { color: var(--muted); text-underline-offset: 0.18em; }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 760px) {
+      .nav a:not(:last-child) { display: none; }
+      .scope, .section-head, .guide { grid-template-columns: 1fr; }
+      .scope > div + div { border-top: 1px solid var(--line); border-left: 0; }
+      .section-head { align-items: start; }
+      .level { grid-template-columns: 1fr; }
+      .level__side { padding: 1.1rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line); }
+      .level__number, .level__mode { display: inline; }
+      .level__mode { margin-left: 0.75rem; }
+    }
+
+    @media (max-width: 520px) {
+      .site-head .wrap { min-height: 3.9rem; }
+      .level__body { padding: 1.25rem; }
+      .level__top { align-items: flex-start; flex-direction: column-reverse; gap: 0.9rem; }
+      pre { font-size: 0.7rem; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="AI usage badges, back to top">
+        <span class="brand__mark" aria-hidden="true">✦</span><span>AI badge</span>
+      </a>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#levels">Levels</a>
+        <a href="#how-to-use">How to use</a>
+        <a href="https://nsg.github.io/">nsg.github.io ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="page-title">
+      <p class="eyebrow">Self-reported repository disclosure</p>
+      <h1 id="page-title">How I use AI in a project.</h1>
+      <p class="lede">These badges are my shorthand for showing how generative AI contributed to one of my repositories—and how closely I reviewed and understand the result.</p>
+
+      <div class="badge-strip" aria-label="AI usage badge levels">
+        <a href="#no"><img src="no.svg" width="87" height="20" alt="AI usage: no"></a>
+        <a href="#assist"><img src="assist.svg" width="102" height="20" alt="AI usage: assist"></a>
+        <a href="#co-written"><img src="co-written.svg" width="126" height="20" alt="AI usage: co-written"></a>
+        <a href="#mostly"><img src="mostly.svg" width="104" height="20" alt="AI usage: mostly"></a>
+        <a href="#vibe"><img src="vibe.svg" width="98" height="20" alt="AI usage: vibe"></a>
+      </div>
+
+      <div class="scope">
+        <div>
+          <h2>What the badge describes</h2>
+          <p>My process for the current committed implementation: AI contribution, human review, and how well I understand the code.</p>
+        </div>
+        <div>
+          <h2>What it does not certify</h2>
+          <p>Quality, security, correctness, ownership, or fitness for use. The label is disclosure—not a score or seal of approval.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="levels" aria-labelledby="levels-title">
+      <div class="section-head">
+        <h2 id="levels-title">Choose the closest description.</h2>
+        <p>The wording defines each level; color only helps distinguish them. Paste one badge near the top of a README and revisit it when the project changes.</p>
+      </div>
+
+      <div class="levels">
+        <article class="level level--no" id="no">
+          <div class="level__side"><span class="level__number">00</span><span class="level__mode">Human-written</span></div>
+          <div class="level__body">
+            <div class="level__top">
+              <h3>No generative AI</h3>
+              <a class="badge-link" href="#no" aria-label="AI usage: no; link to this definition"><img src="no.svg" width="87" height="20" alt="AI usage: no"></a>
+            </div>
+            <p class="definition">I did not use generative AI to produce committed code in this repository. Ordinary tools, documentation, search, and non-generative automation do not change this label.</p>
+            <div class="snippet">
+              <div class="snippet__head"><span>README.md</span><button class="copy" type="button" aria-label="Copy no badge Markdown">Copy Markdown</button></div>
+              <pre><code>[![AI usage: no](https://nsg.github.io/aibadge/no.svg)](https://nsg.github.io/aibadge/#no)</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="level level--assist" id="assist">
+          <div class="level__side"><span class="level__number">01</span><span class="level__mode">Human-led</span></div>
+          <div class="level__body">
+            <div class="level__top">
+              <h3>AI-assisted</h3>
+              <a class="badge-link" href="#assist" aria-label="AI usage: assist; link to this definition"><img src="assist.svg" width="102" height="20" alt="AI usage: assist"></a>
+            </div>
+            <p class="definition">I wrote the implementation. I used AI for ideas, explanations, debugging, or small suggestions, but not for substantial sections of the committed code.</p>
+            <div class="snippet">
+              <div class="snippet__head"><span>README.md</span><button class="copy" type="button" aria-label="Copy assist badge Markdown">Copy Markdown</button></div>
+              <pre><code>[![AI usage: assist](https://nsg.github.io/aibadge/assist.svg)](https://nsg.github.io/aibadge/#assist)</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="level level--co-written" id="co-written">
+          <div class="level__side"><span class="level__number">02</span><span class="level__mode">Shared work</span></div>
+          <div class="level__body">
+            <div class="level__top">
+              <h3>AI co-written</h3>
+              <a class="badge-link" href="#co-written" aria-label="AI usage: co-written; link to this definition"><img src="co-written.svg" width="126" height="20" alt="AI usage: co-written"></a>
+            </div>
+            <p class="definition">AI and I each produced substantial parts of the implementation. I reviewed and tested the AI-generated parts and understand how they work.</p>
+            <div class="snippet">
+              <div class="snippet__head"><span>README.md</span><button class="copy" type="button" aria-label="Copy co-written badge Markdown">Copy Markdown</button></div>
+              <pre><code>[![AI usage: co-written](https://nsg.github.io/aibadge/co-written.svg)](https://nsg.github.io/aibadge/#co-written)</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="level level--mostly" id="mostly">
+          <div class="level__side"><span class="level__number">03</span><span class="level__mode">AI-led, reviewed</span></div>
+          <div class="level__body">
+            <div class="level__top">
+              <h3>Mostly AI-written</h3>
+              <a class="badge-link" href="#mostly" aria-label="AI usage: mostly; link to this definition"><img src="mostly.svg" width="104" height="20" alt="AI usage: mostly"></a>
+            </div>
+            <p class="definition">AI produced most of the implementation. I directed the work, reviewed and tested the result, and take responsibility for what I publish.</p>
+            <div class="snippet">
+              <div class="snippet__head"><span>README.md</span><button class="copy" type="button" aria-label="Copy mostly badge Markdown">Copy Markdown</button></div>
+              <pre><code>[![AI usage: mostly](https://nsg.github.io/aibadge/mostly.svg)](https://nsg.github.io/aibadge/#mostly)</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="level level--vibe" id="vibe">
+          <div class="level__side"><span class="level__number">04</span><span class="level__mode">Limited human review</span></div>
+          <div class="level__body">
+            <div class="level__top">
+              <h3>Vibe-coded</h3>
+              <a class="badge-link" href="#vibe" aria-label="AI usage: vibe; link to this definition"><img src="vibe.svg" width="98" height="20" alt="AI usage: vibe"></a>
+            </div>
+            <p class="definition">AI produced the implementation from my prompts. I have not meaningfully reviewed all of the generated code and may not fully understand how it works.</p>
+            <div class="snippet">
+              <div class="snippet__head"><span>README.md</span><button class="copy" type="button" aria-label="Copy vibe badge Markdown">Copy Markdown</button></div>
+              <pre><code>[![AI usage: vibe](https://nsg.github.io/aibadge/vibe.svg)](https://nsg.github.io/aibadge/#vibe)</code></pre>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide wrap" id="how-to-use" aria-label="How to use these badges and how I think about them">
+      <article class="panel">
+        <p class="panel__eyebrow">Three steps</p>
+        <h2>Add one to a README.</h2>
+        <ol class="steps">
+          <li><div><strong>Choose honestly</strong><span>Pick the statement that best describes the current committed implementation.</span></div></li>
+          <li><div><strong>Copy the Markdown</strong><span>Paste the one-line snippet near the top of the repository README.</span></div></li>
+          <li><div><strong>Reassess over time</strong><span>Change the badge if the project or your level of review changes.</span></div></li>
+        </ol>
+      </article>
+
+      <article class="panel">
+        <p class="panel__eyebrow">My take</p>
+        <h2>Disclosure beats guesswork.</h2>
+        <p>I use these badges to say something concrete about my process. A badge is not a verdict on the software: human-written code can be poor, and AI-written code can appear to work. The useful distinction is how the work was produced and how much human understanding stands behind it.</p>
+        <p>The scale considers committed implementation—not prompt count, a particular model, dependencies, or incidental AI research. It is intentionally self-reported and personal, not a universal standard or independent certification.</p>
+        <p class="fine-print">The definitions use “I” because they describe my repositories. A team adopting the idea should interpret the label across the contributors and use “we” in its own explanation.</p>
+      </article>
+    </section>
+
+    <p class="visually-hidden" id="copy-status" aria-live="polite"></p>
+  </main>
+
+  <footer class="wrap">
+    <span>AI BADGE / SELF-REPORTED DISCLOSURE</span>
+    <span><a href="https://nsg.github.io/">nsg.github.io</a> · <a href="https://github.com/nsg/nsg.github.io/tree/master/aibadge">source</a></span>
+  </footer>
+
+  <script>
+    (function () {
+      var status = document.getElementById("copy-status");
+
+      function fallbackCopy(text) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        var copied = document.execCommand("copy");
+        area.remove();
+        if (!copied) throw new Error("Copy failed");
+      }
+
+      document.querySelectorAll(".copy").forEach(function (button) {
+        button.addEventListener("click", async function () {
+          var code = button.closest(".snippet").querySelector("code").textContent.trim();
+          try {
+            if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(code);
+            else fallbackCopy(code);
+
+            var original = button.textContent;
+            button.textContent = "Copied";
+            button.dataset.copied = "true";
+            status.textContent = button.getAttribute("aria-label").replace("Copy", "Copied");
+            window.setTimeout(function () {
+              button.textContent = original;
+              delete button.dataset.copied;
+            }, 1800);
+          } catch (error) {
+            button.textContent = "Select code";
+            status.textContent = "Copy failed. Select the Markdown code manually.";
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
