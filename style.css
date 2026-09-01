@@ -364,18 +364,10 @@ body:has(#contact:target) .w-contact::after { content: "*"; }
   .win.hero, .win.split { grid-template-columns: minmax(0, 1fr); }
   .win > .pane + .pane { border-left: 1px solid var(--border); border-top: 0; }
   .win.hero > .pane + .pane { border-left-color: var(--green); border-top: 0; }
+  .monitor, .range-command, .range { display: none; }
 
   .info { grid-template-columns: minmax(0, 1fr); }
   .info dd { padding-left: 2ch; }
-
-  .range { grid-template-columns: minmax(0, 1fr); border-left: 1px solid var(--aqua); padding: 0; }
-  .range li { padding: 0 0 0 2ch; }
-  .range li + li { margin-top: var(--lh); }
-  .range li::before { border: 0; background: none; }
-  .range li::after { width: 1ch; height: 1px; top: calc(var(--lh) / 2); }
-  .range li:last-child { border-right: 0; }
-  .range small { display: inline; }
-  .range small::before { content: " · "; }
 
   /* tmux never wraps its status line: smaller type, tighter segments,
      session name and clock dropped, the switch shortened to [dark] / [light] */
