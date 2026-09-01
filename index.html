@@ -7,8 +7,8 @@
   <meta name="description" content="IT architect with a systems administration background, working across the DevOps spectrum: clusters, containers, automation and the occasional crazy contraption. Lately, AI has been a big focus.">
   <meta name="author" content="Stefan Berggren">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f1ea">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d1526">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9f5d7">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1d2021">
   <link rel="canonical" href="https://nsg.github.io/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
@@ -30,151 +30,123 @@
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="top">
-    <div class="wrap">
-      <a class="brand" href="#top" aria-label="nsg.github.io, back to top">
-        <i class="led-brand" aria-hidden="true"></i>nsg<span>.github.io</span>
-      </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#sheet"><span class="num" aria-hidden="true">01</span>data sheet</a>
-        <a href="#account"><span class="num" aria-hidden="true">02</span>account</a>
-        <a href="#contact"><span class="num" aria-hidden="true">03</span>contact</a>
-        <a href="https://github.com/nsg" rel="me">github ↗</a>
-      </nav>
-      <button class="switch" id="theme-switch" type="button" role="switch" aria-checked="false">
-        <span class="switch__track" aria-hidden="true"><span class="switch__knob"></span></span>
-        <span class="switch__label">Dark mode</span>
-      </button>
-    </div>
-  </header>
+  <div class="term">
 
-  <main id="main">
-    <section class="hero" aria-labelledby="name">
-      <div class="wrap">
-        <div>
+    <!-- pane 0 + 1: about.md and an htop, split side by side -->
+    <header class="win hero">
+      <div class="pane active">
+        <div class="title" aria-hidden="true"><span class="idx">0</span>about.md</div>
+        <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">cat</span> <span class="p">about.md</span></p>
+        <div class="out md prose">
           <p class="eyebrow">nsg · IT architect · systems</p>
-          <h1 class="name" id="name">Stefan Berggren</h1>
-          <p class="lede">IT architect by title, systems administrator by instinct.</p>
-          <p class="intro">
-            I love to tinker with code and tweak systems. I work across the DevOps spectrum —
-            servers, and whatever else solves the problem — building clusters, running containers,
-            automating the boring parts and, now and then, assembling a crazy contraption.
-            From time to time I also write software. Lately, AI has been a big focus.
-          </p>
-          <p class="cta">
-            <a class="btn btn--primary" href="https://github.com/nsg" rel="me">
-              <span class="mono">github.com/nsg</span><span class="arrow" aria-hidden="true">↗</span>
-            </a>
-            <a class="btn btn--ghost" href="#contact">How to reach me</a>
-          </p>
+          <h1><span class="dim" aria-hidden="true"># </span>Stefan Berggren</h1>
+          <p class="tag"><span class="dim" aria-hidden="true">**</span>IT architect by title, systems administrator by instinct.<span class="dim" aria-hidden="true">**</span></p>
+          <p>I love to tinker with code and tweak systems. I work across the DevOps spectrum — servers, and whatever else solves the problem — building clusters, running containers, automating the boring parts and, now and then, assembling a crazy contraption. From time to time I also write software. Lately, AI has been a big focus.</p>
+          <ul class="links">
+            <li><span class="dim" aria-hidden="true">- [</span><a href="https://github.com/nsg" rel="me">github.com/nsg</a><span class="dim" aria-hidden="true">](https://github.com/nsg)</span></li>
+            <li><span class="dim" aria-hidden="true">- [</span><a href="#contact">How to reach me</a><span class="dim" aria-hidden="true">](#contact)</span></li>
+          </ul>
         </div>
-
-        <figure class="rack" aria-hidden="true">
-          <div class="rack__cab">
-            <ol class="rack__units">
-              <li class="u u--switch"><i></i></li>
-              <li class="u u--patch"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--stor u--2"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--gpu u--4"><i></i></li>
-              <li class="u u--blank"></li>
-              <li class="u u--tiny"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--srv"><i></i></li>
-              <li class="u u--blank"></li>
-              <li class="u u--ups u--2"><i></i></li>
-            </ol>
-            <span class="rack__dim"><span>22U</span></span>
-          </div>
-          <figcaption>fig. 1 · assorted equipment · not to scale</figcaption>
-        </figure>
+        <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="cursor" aria-hidden="true"></span></p>
       </div>
-    </section>
 
-    <section class="sheet" id="sheet" aria-labelledby="sheet-h">
-      <div class="wrap">
-        <div class="sheet__head">
-          <h2 class="h2" id="sheet-h"><span class="num" aria-hidden="true">01</span>Data sheet</h2>
-          <p class="meta">sheet 1 of 1 · scale 1:1 · drawn by nsg</p>
+      <aside class="pane" aria-label="System monitor (decorative)">
+        <div class="title" aria-hidden="true"><span class="idx">1</span> htop</div>
+        <pre class="htop" role="img" aria-label="htop-style meters: clusters 80%, containers 70%, automation 90%, GPU 30%; a process list of ansible, lxd, dockerd, corosync, nvcc and vim ~/.plan"><span class="dim">  clusters[</span><span class="g">||||||||||||||||||||||||||</span>   <span class="v">80%</span><span class="dim">]</span>
+<span class="dim">containers[</span><span class="g">||||||||||||||||||||||</span>       <span class="v">70%</span><span class="dim">]</span>
+<span class="dim">automation[</span><span class="g">||||||||||||||||||||||||||</span><span class="r">|||</span><span class="v">90%</span><span class="dim">]</span>
+<span class="dim">       gpu[</span><span class="g">||||||||||</span>                   <span class="v">30%</span><span class="dim">]</span>
+<span class="dim">       Mem[</span><span class="g">|||||||||||||||</span><span class="y">||||||</span><span class="v">11.2G/16.0G</span><span class="dim">]</span>
+<span class="dim">       Swp[</span>                         <span class="v">0K/2.0G</span><span class="dim">]</span>
+
+<span class="dim">Tasks:</span> <span class="v">42</span><span class="dim">, 7 thr;</span> <span class="g">1</span> <span class="dim">running</span>
+<span class="dim">Load average:</span> <span class="v">0.73 0.61 0.58</span>
+<span class="dim">Uptime:</span> <span class="v">42 days, 03:17:21</span>
+
+<span class="hdr">  PID USER  S CPU% Command                  </span>
+<span class="n"> 1337</span> nsg   <span class="R">R</span>  4.2 <span class="bin">ansible-playbook</span> site.yml
+<span class="n">  418</span> root  <span class="S">S</span>  0.7 <span class="bin">lxd</span> --group lxd
+<span class="n">  512</span> root  <span class="S">S</span>  0.3 <span class="bin">dockerd</span>
+<span class="n">  790</span> root  <span class="S">S</span>  0.2 <span class="bin">corosync</span> -f
+<span class="n"> 2049</span> nsg   <span class="S">S</span>  0.0 <span class="bin">nvcc</span> -o kernel kernel.cu
+<span class="n"> 2201</span> nsg   <span class="S">S</span>  0.0 <span class="bin">vim</span> ~/.plan</pre>
+      </aside>
+    </header>
+
+    <main id="main">
+
+      <!-- pane 2: data sheet -->
+      <section class="win" id="sheet" aria-labelledby="sheet-h">
+        <div class="pane">
+          <h2 class="title" id="sheet-h"><span class="idx" aria-hidden="true">2</span> Data sheet</h2>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">nsg</span> --info</p>
+          <dl class="out info">
+            <dt>Role</dt><dd>IT architect</dd>
+            <dt>Background</dt><dd>Systems administration</dd>
+            <dt>Currently learning</dt><dd>Programming the GPU</dd>
+            <dt>Builds and runs</dt><dd>Clusters, container platforms, automation and the occasional crazy contraption — and, sometimes, the software that runs on them.</dd>
+          </dl>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">ls</span> -F <span class="p">~/interests/</span>  <span class="k"># Lately fascinated by</span></p>
+          <ul class="out ls">
+            <li>Ansible</li><li>Automation</li><li>Clusters</li><li>Docker</li><li>'High availability'</li><li>LXD</li><li>Snapcraft</li>
+          </ul>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">nsg</span> --range  <span class="k"># Operating range</span></p>
+          <ol class="out range" aria-label="Operating range, from smallest to largest">
+            <li>tiny devices <small>mcu</small></li>
+            <li>single boards <small>sbc</small></li>
+            <li>servers <small>1u–4u</small></li>
+            <li>clusters <small>racks</small></li>
+            <li>data centers <small>halls</small></li>
+          </ol>
         </div>
-        <dl class="tb">
-          <div>
-            <dt>Role</dt>
-            <dd>IT architect</dd>
-          </div>
-          <div>
-            <dt>Background</dt>
-            <dd>Systems administration</dd>
-          </div>
-          <div>
-            <dt>Currently learning</dt>
-            <dd>Programming the GPU</dd>
-          </div>
-          <div class="w3">
-            <dt>Builds and runs</dt>
-            <dd>Clusters, container platforms, automation and the occasional crazy contraption — and, sometimes, the software that runs on them.</dd>
-          </div>
-          <div class="w3">
-            <dt>Lately fascinated by</dt>
-            <dd>
-              <ul class="tags">
-                <li>LXD</li>
-                <li>Snapcraft</li>
-                <li>Ansible</li>
-                <li>Docker</li>
-                <li>High availability</li>
-                <li>Clusters</li>
-                <li>Automation</li>
-              </ul>
-            </dd>
-          </div>
-          <div class="w6">
-            <dt>Operating range</dt>
-            <dd>
-              <span class="visually-hidden">Everything from tiny devices, through single-board computers and servers, to clusters and data centers.</span>
-              <div class="ruler" aria-hidden="true"></div>
-              <ul class="ruler__labels" aria-hidden="true">
-                <li>tiny devices</li>
-                <li>single boards</li>
-                <li>servers</li>
-                <li>clusters</li>
-                <li>data centers</li>
-              </ul>
-            </dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <div class="wrap duo">
-      <section class="panel" id="account" aria-labelledby="account-h">
-        <h2 class="h2" id="account-h"><span class="num" aria-hidden="true">02</span>About this account</h2>
-        <p>This is my personal account, controlled by me. It is also linked to my work email addresses.</p>
-        <p>If you are unsure whether a contribution was made by me as a private citizen or as a representative of my employer, the answer is most likely: private citizen. To be certain, check the email on the commit — I am careful to commit with the right identity.</p>
       </section>
 
-      <section class="panel" id="contact" aria-labelledby="contact-h">
-        <h2 class="h2" id="contact-h"><span class="num" aria-hidden="true">03</span>Contact</h2>
-        <p>No form, no tracker. Pick any of my commits — the author email on it is one I actually read. Different hats use different addresses; the one on a personal repository is the safe default.</p>
-        <pre class="term" aria-label="Example: reading the author email from a commit"><code><span class="p">$</span> git log -1 --format='%an &lt;%ae&gt;'
-Stefan Berggren &lt;<mark>the address you are looking for</mark>&gt;
-<span class="p">$</span> <span class="caret" aria-hidden="true"></span></code></pre>
-        <a class="more" href="https://github.com/nsg?tab=repositories">Browse the repositories ↗</a>
-      </section>
-    </div>
-  </main>
+      <!-- pane 3 + 4: account and contact, split side by side -->
+      <div class="win split">
+        <section class="pane" id="account" aria-labelledby="account-h">
+          <h2 class="title" id="account-h"><span class="idx" aria-hidden="true">3</span> About this account</h2>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">less</span> <span class="p">account.txt</span></p>
+          <p class="out prose">This is my personal account, controlled by me. It is also linked to my work email addresses. If you are unsure whether a contribution was made by me as a private citizen or as a representative of my employer, the answer is most likely: private citizen. To be certain, check the email on the commit — I am careful to commit with the right identity.</p>
+          <p><span class="less" aria-hidden="true">account.txt (END)</span></p>
+        </section>
+
+        <section class="pane" id="contact" aria-labelledby="contact-h">
+          <h2 class="title" id="contact-h"><span class="idx" aria-hidden="true">4</span> Contact</h2>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">cat</span> <span class="p">contact.txt</span></p>
+          <p class="out prose">No form, no tracker. Pick any of my commits — the author email on it is one I actually read. Different hats use different addresses; the one on a personal repository is the safe default.</p>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">git</span> log -1 --format='%an &lt;%ae&gt;'</p>
+          <p class="out">Stefan Berggren &lt;<mark class="hit">the address you are looking for</mark>&gt;</p>
+          <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">nsg</span> --repos</p>
+          <p class="yn"><a href="https://github.com/nsg?tab=repositories">Browse the repositories ↗</a> <span class="dim">[Y/n]</span> <span class="y">y</span></p>
+        </section>
+      </div>
+
+    </main>
+  </div>
 
   <footer class="foot">
-    <div class="wrap">
-      <p>© Stefan Berggren · <a href="https://github.com/nsg/nsg.github.io">source</a></p>
-    </div>
+    <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="c">tmux</span> detach</p>
+    <p class="msg">[detached (from session nsg)]</p>
+    <p class="dim">© Stefan Berggren · <a href="https://github.com/nsg/nsg.github.io">source</a></p>
   </footer>
+
+  <!-- tmux status line: session name, window list with flags, theme switch, host and clock -->
+  <nav class="status" aria-label="Primary">
+    <span class="sess" aria-hidden="true">[nsg]</span>
+    <ul class="windows">
+      <li><a class="w w-about" data-flag="*" href="#top">0:about</a></li>
+      <li><a class="w w-sheet" data-flag="" href="#sheet">1:sheet</a></li>
+      <li><a class="w w-account" data-flag="" href="#account">2:account</a></li>
+      <li><a class="w w-contact" data-flag="" href="#contact">3:contact</a></li>
+      <li><a class="w" data-flag="#" href="https://github.com/nsg" rel="me" title="github.com/nsg (external)">4:github</a></li>
+    </ul>
+    <div class="right">
+      <button class="switch" id="theme-switch" type="button" role="switch" aria-checked="false">
+        <span aria-hidden="true">[</span><span class="switch__label">theme:</span><span aria-hidden="true"><span class="switch__on">dark</span><span class="switch__off">light</span>]</span>
+      </button>
+      <span class="host" aria-hidden="true">"lab" 12:00 01-Sep-26</span>
+    </div>
+  </nav>
 
   <script src="theme.js" defer></script>
 </body>

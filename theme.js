@@ -10,7 +10,7 @@
   var root = document.documentElement;
   var button = document.getElementById("theme-switch");
   var media = window.matchMedia("(prefers-color-scheme: dark)");
-  var colors = { light: "#f4f1ea", dark: "#0d1526" };
+  var colors = { light: "#f9f5d7", dark: "#1d2021" };
 
   if (!button) return;
 
