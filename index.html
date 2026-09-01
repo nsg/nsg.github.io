@@ -25,7 +25,7 @@
     })();
   </script>
   <link rel="stylesheet" href="style.css">
-  <noscript><style>.switch { display: none; }</style></noscript>
+  <noscript><style>.switch, .terminal-input, .terminal-welcome { display: none; }</style></noscript>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -47,7 +47,19 @@
             <li><span class="dim" aria-hidden="true">- [</span><a href="#contact">How to reach me</a><span class="dim" aria-hidden="true">](#contact)</span></li>
           </ul>
         </div>
-        <p class="cmd"><span class="ps1"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</span> <span class="cursor" aria-hidden="true"></span></p>
+        <div class="terminal" id="terminal">
+          <div class="terminal-output" id="terminal-output" role="log" aria-label="Terminal output" aria-live="polite" aria-relevant="additions text">
+            <p class="terminal-welcome"><span class="dim">Interactive shell · type </span><span class="c">help</span><span class="dim"> to explore.</span></p>
+          </div>
+          <form class="cmd terminal-form" id="terminal-form" autocomplete="off">
+            <label class="ps1" for="terminal-input"><span class="uh">nsg@lab</span>:<span class="cwd">~/nsg.github.io</span> <span class="git">(master)</span> $</label>
+            <span class="terminal-entry">
+              <input class="terminal-input" id="terminal-input" name="command" type="text" maxlength="160" placeholder=" " aria-label="Terminal command" aria-describedby="terminal-help" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
+              <span class="cursor" aria-hidden="true"></span>
+            </span>
+            <span class="sr-only" id="terminal-help">Enter a command. Type help to see the available commands. Press Escape to leave the terminal.</span>
+          </form>
+        </div>
       </div>
 
       <aside class="pane" aria-label="System monitor (decorative)">
@@ -151,5 +163,6 @@
   </nav>
 
   <script src="theme.js" defer></script>
+  <script src="terminal.js" defer></script>
 </body>
 </html>

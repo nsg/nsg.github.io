@@ -117,6 +117,10 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--yellow); outlin
 
 .dim { color: var(--dim); }
 .prose { max-width: 78ch; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 
 /* Skip link, rendered like a tmux message line */
 .skip {
@@ -172,6 +176,37 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--yellow); outlin
 .cmd .c { color: var(--aqua); }                        /* command word */
 .cmd .p { color: var(--blue); }                        /* path argument */
 .cmd .k { color: var(--dim); font-style: italic; }     /* # comment */
+
+/* The last prompt is a small, safe command interpreter (terminal.js).
+   It is never focused automatically: mobile keyboards therefore open only
+   after a deliberate tap on this prompt. */
+.terminal { margin-top: var(--lh); }
+.terminal-output:empty { display: none; }
+.terminal-output > * { margin-bottom: var(--lh); }
+.terminal-output .terminal-command { margin-bottom: 0; }
+.terminal-output pre {
+  margin-bottom: var(--lh);
+  overflow-x: auto;
+  color: var(--fg);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.terminal-welcome .c { color: var(--aqua); }
+.terminal-form { display: flex; align-items: baseline; min-width: 0; }
+.terminal-form > .ps1 { flex: 0 0 auto; cursor: text; }
+.terminal-entry { position: relative; flex: 1 1 auto; min-width: 2ch; }
+.terminal-input {
+  display: block; width: 100%; min-width: 0; margin: 0; padding: 0 0 0 1ch;
+  border: 0; border-radius: 0; outline: 0; background: transparent;
+  color: var(--fg-bright); caret-color: var(--fg); font: inherit;
+  appearance: none;
+}
+.terminal-input:focus { outline: 1px solid transparent; }
+.terminal-entry .cursor { position: absolute; left: 1ch; top: 2px; pointer-events: none; }
+.terminal-input:focus + .cursor,
+.terminal-input:not(:placeholder-shown) + .cursor { display: none; }
+.terminal-link { color: var(--blue); }
+.terminal-error { color: var(--red); }
 
 .cursor {
   display: inline-block; width: 1ch; height: calc(var(--lh) - 4px);
