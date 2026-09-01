@@ -90,31 +90,9 @@
     .site-head .wrap {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 1.5rem;
       min-height: 4.35rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      font: 700 0.78rem/1 var(--code);
-      letter-spacing: 0.14em;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .brand__mark {
-      display: grid;
-      width: 1.75rem;
-      height: 1.75rem;
-      place-items: center;
-      border: 1px solid #505a6c;
-      border-radius: 0.45rem;
-      color: var(--accent);
-      background: #181d27;
-      font-size: 1rem;
     }
 
     .nav {
@@ -131,7 +109,14 @@
 
     main { padding-bottom: 5rem; }
 
-    .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 7rem); }
+    .hero { padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 6rem); }
+
+    .hero__layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 6rem);
+    }
 
     .eyebrow {
       margin: 0 0 1rem;
@@ -170,41 +155,24 @@
     .badge-strip a, .badge-link { display: inline-block; border-radius: 3px; text-decoration: none; }
     .badge-strip img, .badge-link img { width: auto; height: 20px; }
 
-    .scope {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: clamp(3rem, 7vw, 5rem);
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      overflow: hidden;
-      background: rgba(17, 21, 29, 0.86);
+    .hero-art {
+      position: relative;
+      color: #aeb6ff;
+      opacity: 0.86;
     }
-
-    .scope > div { padding: 1.5rem; }
-    .scope > div + div { border-left: 1px solid var(--line); }
-    .scope h2, .scope p { margin: 0; }
-    .scope h2 {
-      margin-bottom: 0.55rem;
-      font: 700 0.72rem/1.2 var(--code);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .hero-art::before {
+      position: absolute;
+      z-index: -1;
+      inset: 13%;
+      border-radius: 50%;
+      background: rgba(91, 101, 255, 0.13);
+      filter: blur(3rem);
+      content: "";
     }
-    .scope p { color: var(--muted); font-size: 0.9rem; }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 1fr minmax(18rem, 34rem);
-      align-items: end;
-      gap: 2rem;
-      margin-bottom: 1.6rem;
-    }
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      letter-spacing: -0.05em;
-      line-height: 1;
-    }
-    .section-head p { margin: 0; color: var(--muted); }
+    .hero-art svg { width: 100%; height: auto; overflow: visible; }
+    .hero-art .faint { opacity: 0.2; }
+    .hero-art .soft { opacity: 0.48; }
+    .hero-art .bright { opacity: 0.92; }
 
     .levels {
       border: 1px solid var(--line);
@@ -298,9 +266,6 @@
     }
 
     .guide {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 1rem;
       margin-top: clamp(4rem, 9vw, 7rem);
     }
 
@@ -319,19 +284,6 @@
     }
     .panel h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.04em; line-height: 1.08; }
     .panel > p:not(.panel__eyebrow) { margin: 1rem 0 0; color: var(--muted); }
-
-    .steps { display: grid; margin: 1.6rem 0 0; padding: 0; list-style: none; counter-reset: steps; }
-    .steps li {
-      display: grid;
-      grid-template-columns: 2.25rem 1fr;
-      gap: 0.8rem;
-      padding: 1rem 0;
-      border-top: 1px solid var(--line);
-      counter-increment: steps;
-    }
-    .steps li::before { content: "0" counter(steps); color: var(--accent); font: 700 0.72rem/1.6 var(--code); }
-    .steps strong { display: block; margin-bottom: 0.15rem; }
-    .steps span { color: var(--muted); font-size: 0.9rem; }
 
     .fine-print { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--quiet); font-size: 0.8rem; }
 
@@ -360,10 +312,8 @@
     }
 
     @media (max-width: 760px) {
-      .nav a:not(:last-child) { display: none; }
-      .scope, .section-head, .guide { grid-template-columns: 1fr; }
-      .scope > div + div { border-top: 1px solid var(--line); border-left: 0; }
-      .section-head { align-items: start; }
+      .hero__layout { grid-template-columns: 1fr; }
+      .hero-art { width: min(80%, 24rem); margin: 0 auto; }
       .level { grid-template-columns: 1fr; }
       .level__side { padding: 1.1rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line); }
       .level__number, .level__mode { display: inline; }
@@ -386,12 +336,8 @@
 
   <header class="site-head">
     <div class="wrap">
-      <a class="brand" href="#top" aria-label="AI usage badges, back to top">
-        <span class="brand__mark" aria-hidden="true">✦</span><span>AI badge</span>
-      </a>
       <nav class="nav" aria-label="Page navigation">
         <a href="#levels">Levels</a>
-        <a href="#how-to-use">How to use</a>
         <a href="https://nsg.github.io/">nsg.github.io ↗</a>
       </nav>
     </div>
@@ -399,36 +345,74 @@
 
   <main id="main">
     <section class="hero wrap" aria-labelledby="page-title">
-      <p class="eyebrow">Self-reported repository disclosure</p>
-      <h1 id="page-title">How I use AI in a project.</h1>
-      <p class="lede">These badges are my shorthand for showing how generative AI contributed to one of my repositories—and how closely I reviewed and understand the result.</p>
-
-      <div class="badge-strip" aria-label="AI usage badge levels">
-        <a href="#no"><img src="no.svg" width="87" height="20" alt="AI usage: no"></a>
-        <a href="#assist"><img src="assist.svg" width="102" height="20" alt="AI usage: assist"></a>
-        <a href="#co-written"><img src="co-written.svg" width="126" height="20" alt="AI usage: co-written"></a>
-        <a href="#mostly"><img src="mostly.svg" width="104" height="20" alt="AI usage: mostly"></a>
-        <a href="#vibe"><img src="vibe.svg" width="98" height="20" alt="AI usage: vibe"></a>
-      </div>
-
-      <div class="scope">
+      <div class="hero__layout">
         <div>
-          <h2>What the badge describes</h2>
-          <p>My process for the current committed implementation: AI contribution, human review, and how well I understand the code.</p>
+          <p class="eyebrow">Self-reported repository disclosure</p>
+          <h1 id="page-title">How I use AI in a project.</h1>
+          <p class="lede">These badges are my shorthand for showing how generative AI contributed to one of my repositories—and how closely I reviewed and understand the result.</p>
+
+          <div class="badge-strip" aria-label="AI usage badge levels">
+            <a href="#no"><img src="no.svg" width="87" height="20" alt="AI usage: no"></a>
+            <a href="#assist"><img src="assist.svg" width="102" height="20" alt="AI usage: assist"></a>
+            <a href="#co-written"><img src="co-written.svg" width="126" height="20" alt="AI usage: co-written"></a>
+            <a href="#mostly"><img src="mostly.svg" width="104" height="20" alt="AI usage: mostly"></a>
+            <a href="#vibe"><img src="vibe.svg" width="98" height="20" alt="AI usage: vibe"></a>
+          </div>
         </div>
-        <div>
-          <h2>What it does not certify</h2>
-          <p>Quality, security, correctness, ownership, or fitness for use. The label is disclosure—not a score or seal of approval.</p>
+
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle class="faint" cx="210" cy="210" r="154" stroke-dasharray="2 12"/>
+              <circle class="faint" cx="210" cy="210" r="118"/>
+
+              <g class="soft" stroke-width="1.5">
+                <path d="M210 56v50M210 314v50M56 210h50M314 210h50"/>
+                <path d="M101 101l38 38M281 281l38 38M319 101l-38 38M139 281l-38 38"/>
+                <path d="M210 56l-8-8m8 8 8-8M364 210l8-8m-8 8 8 8M210 364l-8 8m8-8 8 8M56 210l-8-8m8 8-8 8"/>
+                <path d="M101 101H78V78M319 101h23V78M319 319h23v23M101 319H78v23"/>
+              </g>
+
+              <g class="bright" stroke-width="2">
+                <path d="M210 106 282 148 290 230 246 300 164 300 120 230 138 148 210 106Z"/>
+                <path d="m138 148 72 32 72-32M120 230l90-50 80 50M164 300l46-120 36 120"/>
+                <path d="M138 148l26 152M282 148l-36 152M120 230l170 0"/>
+              </g>
+
+              <g fill="#0b0e14" stroke="currentColor" stroke-width="2">
+                <circle cx="210" cy="106" r="6"/>
+                <circle cx="282" cy="148" r="6"/>
+                <circle cx="290" cy="230" r="6"/>
+                <circle cx="246" cy="300" r="6"/>
+                <circle cx="164" cy="300" r="6"/>
+                <circle cx="120" cy="230" r="6"/>
+                <circle cx="138" cy="148" r="6"/>
+                <circle cx="210" cy="180" r="9"/>
+              </g>
+
+              <g class="soft" stroke-width="1.5">
+                <circle cx="210" cy="56" r="4"/>
+                <circle cx="364" cy="210" r="4"/>
+                <circle cx="210" cy="364" r="4"/>
+                <circle cx="56" cy="210" r="4"/>
+                <circle cx="101" cy="101" r="4"/>
+                <circle cx="319" cy="101" r="4"/>
+                <circle cx="319" cy="319" r="4"/>
+                <circle cx="101" cy="319" r="4"/>
+              </g>
+
+              <g class="bright" stroke-width="1.6">
+                <path d="M346 139v18M337 148h18"/>
+                <path d="M78 264v14M71 271h14"/>
+                <path d="M266 68v12M260 74h12"/>
+              </g>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <section class="wrap" id="levels" aria-labelledby="levels-title">
-      <div class="section-head">
-        <h2 id="levels-title">Choose the closest description.</h2>
-        <p>The wording defines each level; color only helps distinguish them. Paste one badge near the top of a README and revisit it when the project changes.</p>
-      </div>
-
+    <section class="wrap" id="levels" aria-label="AI usage levels">
       <div class="levels">
         <article class="level level--no" id="no">
           <div class="level__side"><span class="level__number">00</span><span class="level__mode">Human-written</span></div>
@@ -507,17 +491,7 @@
       </div>
     </section>
 
-    <section class="guide wrap" id="how-to-use" aria-label="How to use these badges and how I think about them">
-      <article class="panel">
-        <p class="panel__eyebrow">Three steps</p>
-        <h2>Add one to a README.</h2>
-        <ol class="steps">
-          <li><div><strong>Choose honestly</strong><span>Pick the statement that best describes the current committed implementation.</span></div></li>
-          <li><div><strong>Copy the Markdown</strong><span>Paste the one-line snippet near the top of the repository README.</span></div></li>
-          <li><div><strong>Reassess over time</strong><span>Change the badge if the project or your level of review changes.</span></div></li>
-        </ol>
-      </article>
-
+    <section class="guide wrap" aria-label="How I think about AI usage disclosure">
       <article class="panel">
         <p class="panel__eyebrow">My take</p>
         <h2>Disclosure beats guesswork.</h2>
