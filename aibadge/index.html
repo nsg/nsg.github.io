@@ -204,18 +204,42 @@
       grid-template-columns: 9.5rem minmax(0, 1fr);
       min-height: 18rem;
       border-bottom: 1px solid var(--line);
-      background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 8%, transparent), transparent 40%);
+      background: rgba(255, 255, 255, 0.008);
     }
     .level:last-child { border-bottom: 0; }
     .level:target {
-      background: linear-gradient(90deg, color-mix(in srgb, var(--tone) 19%, transparent), transparent 55%);
+      background-color: color-mix(in srgb, var(--tone) 8%, transparent);
       box-shadow: inset 3px 0 0 var(--tone);
     }
-    .level--no { --tone: #59636e; }
-    .level--assist { --tone: #2869d8; }
-    .level--co-written { --tone: #7048c7; }
-    .level--mostly { --tone: #c05a18; }
-    .level--vibe { --tone: #bd3266; }
+    .level--no {
+      --tone: #59636e;
+      background: linear-gradient(100deg, rgba(89, 99, 110, 0.045), transparent 48%);
+    }
+    .level--assist {
+      --tone: #2869d8;
+      background:
+        radial-gradient(circle at 4% 48%, rgba(40, 105, 216, 0.13), transparent 45%),
+        linear-gradient(110deg, rgba(40, 105, 216, 0.04), transparent 72%);
+    }
+    .level--co-written {
+      --tone: #7048c7;
+      background:
+        radial-gradient(circle at 10% 30%, rgba(112, 72, 199, 0.16), transparent 43%),
+        radial-gradient(circle at 92% 88%, rgba(40, 105, 216, 0.05), transparent 38%);
+    }
+    .level--mostly {
+      --tone: #c05a18;
+      background:
+        radial-gradient(circle at 12% 22%, rgba(192, 90, 24, 0.19), transparent 44%),
+        linear-gradient(115deg, rgba(112, 72, 199, 0.055), transparent 68%);
+    }
+    .level--vibe {
+      --tone: #bd3266;
+      background:
+        radial-gradient(circle at 10% 18%, rgba(255, 84, 153, 0.23), transparent 38%),
+        radial-gradient(circle at 92% 82%, rgba(108, 78, 255, 0.17), transparent 43%),
+        linear-gradient(125deg, rgba(189, 50, 102, 0.14), rgba(76, 47, 166, 0.07) 56%, rgba(255, 138, 47, 0.055));
+    }
 
     .level__side { min-width: 0; padding: 1.7rem 1.5rem; border-right: 1px solid var(--line); }
     .level__number { display: block; color: var(--tone); font: 800 1.35rem/1 var(--code); }
