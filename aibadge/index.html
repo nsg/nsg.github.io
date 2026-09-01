@@ -140,10 +140,25 @@
       max-width: 44rem;
       margin: 1.8rem 0 0;
       color: #c2c9d4;
-      font-size: clamp(1.06rem, 2vw, 1.3rem);
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
       line-height: 1.55;
     }
-    .lede + .lede { margin-top: 1rem; }
+    .lede--detail {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: clamp(0.92rem, 1.3vw, 1rem);
+      line-height: 1.6;
+    }
+    .lede--detail + .lede--detail { margin-top: 0.65rem; }
+    .lede strong { color: var(--ink); font-weight: 700; }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      margin-top: clamp(2rem, 4vw, 3.5rem);
+    }
+    .hero-notes .lede { margin: 0; }
 
     .badge-strip {
       display: flex;
@@ -269,26 +284,6 @@
       scrollbar-color: var(--line-strong) transparent;
     }
 
-    .guide {
-      margin-bottom: clamp(4rem, 9vw, 7rem);
-    }
-
-    .panel {
-      padding: clamp(1.5rem, 4vw, 2.5rem);
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      background: rgba(17, 21, 29, 0.88);
-    }
-    .panel__eyebrow {
-      margin: 0 0 0.7rem;
-      color: var(--accent);
-      font: 700 0.7rem/1 var(--code);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .panel h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.04em; line-height: 1.08; }
-    .panel > p:not(.panel__eyebrow) { margin: 1rem 0 0; color: var(--muted); }
-
     footer {
       display: flex;
       align-items: center;
@@ -315,7 +310,8 @@
 
     @media (max-width: 760px) {
       .hero__layout { grid-template-columns: 1fr; }
-      .hero-art { width: min(80%, 24rem); margin: 0 auto; }
+      .hero-art { display: none; }
+      .hero-notes { grid-template-columns: 1fr; gap: 0.75rem; }
       .level { grid-template-columns: minmax(0, 1fr); }
       .level__side { padding: 1.1rem 1.25rem; border-right: 0; border-bottom: 1px solid var(--line); }
       .level__number, .level__mode { display: inline; }
@@ -351,9 +347,7 @@
         <div>
           <p class="eyebrow">Self-reported repository disclosure</p>
           <h1 id="page-title">How I use AI in a project.</h1>
-          <p class="lede">These badges are my shorthand for showing how generative AI contributed to one of my repositories.</p>
-          <p class="lede">I state this because some people prefer not to use AI-produced code or assets, for any number of reasons, and that is completely fair. It is becoming harder to tell whether work was created by a human or a machine, so I hope these labels make the origin of a repository's commits clearer for anyone who cares.</p>
-          <p class="lede">I do not keep provider-specific co-author tags on commits. Most contributions combine several agents, models, and coding harnesses that delegate work, review one another, and exchange feedback. The tool that creates the final commit is rarely the sole author, so naming only that provider would be misleading. Unless stated otherwise, assume a mixed workflow that routes each task to the system best suited to it.</p>
+          <p class="lede"><strong>Disclosure beats guesswork.</strong> These badges show how generative AI contributed to my repositories. Some people prefer to avoid AI-produced code or assets, which is entirely fair. As human and machine work become harder to distinguish, the labels make the origin of my commits clearer for anyone who cares.</p>
 
           <div class="badge-strip" aria-label="AI usage badge levels">
             <a href="#no"><img src="no.svg" width="87" height="20" alt="AI usage: no"></a>
@@ -414,17 +408,12 @@
           </svg>
         </div>
       </div>
-    </section>
 
-    <section class="guide wrap" aria-label="How I think about AI usage disclosure">
-      <article class="panel">
-        <p class="panel__eyebrow">My take</p>
-        <h2>Disclosure beats guesswork.</h2>
-        <p>These badges describe my process, not the quality of the software. Human-written code can be poor, and AI-written code can be excellent. What matters is whether the result is well designed, tested, reviewed, secure, and fit for its purpose.</p>
-        <p>Who typed the code is only one part of how software gets made. I might write it myself, generate parts with AI, or pay someone else to implement it. None of those paths determines the quality of the result. The badge simply makes my role and the role of AI more visible.</p>
-        <p>At every level, including vibe-coded, I may shape the architecture, discuss implementation details, and guide the agents toward particular solutions. With vibe coding, I take more of an architect's role. I direct the work, but I do not actively read the source code.</p>
-        <p>That does not mean there is no quality control. I have multiple agents critique one another's work, supported by tests and automated workflows that verify the result. Those checks can sometimes uncover corner cases I would have missed in a manual review. The vibe badge says specifically that I have not personally reviewed the code.</p>
-      </article>
+      <div class="hero-notes">
+        <p class="lede lede--detail">They describe process, not quality. Human-written code can be poor and AI-written code can be excellent. Whether I wrote it, generated it, or paid someone else to implement it does not determine whether it is well designed, tested, reviewed, secure, and fit for purpose.</p>
+        <p class="lede lede--detail">At every level I may shape the architecture and direct the work. Vibe-coded means I do not read the source, not that quality control is absent. Agents review one another, while tests and workflows verify results and sometimes catch corner cases I would miss.</p>
+        <p class="lede lede--detail">I omit provider-specific co-author tags because most contributions mix agents, models, and coding harnesses. They delegate work, review one another, and exchange feedback, so the tool making the final commit rarely represents the whole effort. Unless stated otherwise, assume each task went to the best-suited system.</p>
+      </div>
     </section>
 
     <section class="wrap" id="levels" aria-label="AI usage levels">
