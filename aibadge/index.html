@@ -143,6 +143,7 @@
       font-size: clamp(1.06rem, 2vw, 1.3rem);
       line-height: 1.55;
     }
+    .lede + .lede { margin-top: 1rem; }
 
     .badge-strip {
       display: flex;
@@ -351,6 +352,8 @@
           <p class="eyebrow">Self-reported repository disclosure</p>
           <h1 id="page-title">How I use AI in a project.</h1>
           <p class="lede">These badges are my shorthand for showing how generative AI contributed to one of my repositories.</p>
+          <p class="lede">I state this because some people prefer not to use AI-produced code or assets, for any number of reasons, and that is completely fair. It is becoming harder to tell whether work was created by a human or a machine, so I hope these labels make the origin of a repository's commits clearer for anyone who cares.</p>
+          <p class="lede">I do not keep provider-specific co-author tags on commits. Most contributions combine several agents, models, and coding harnesses that delegate work, review one another, and exchange feedback. The tool that creates the final commit is rarely the sole author, so naming only that provider would be misleading. Unless stated otherwise, assume a mixed workflow that routes each task to the system best suited to it.</p>
 
           <div class="badge-strip" aria-label="AI usage badge levels">
             <a href="#no"><img src="no.svg" width="87" height="20" alt="AI usage: no"></a>
