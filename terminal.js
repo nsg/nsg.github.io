@@ -196,6 +196,7 @@
     input.value = "";
     run(command);
     while (output.childElementCount > 80) output.firstElementChild.remove();
+    output.scrollTop = output.scrollHeight;
     if (!/^cd(?:\s|$)/i.test(command.trim())) input.scrollIntoView({ block: "nearest" });
   });
 
@@ -222,6 +223,7 @@
       commandLine(input.value + "^C");
       input.value = "";
       historyIndex = history.length;
+      output.scrollTop = output.scrollHeight;
     }
   });
 })();

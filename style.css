@@ -181,8 +181,19 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--yellow); outlin
    It is never focused automatically: mobile keyboards therefore open only
    after a deliberate tap on this prompt. */
 .terminal { margin-top: var(--lh); }
-.terminal-output:empty { display: none; }
+.terminal-output {
+  height: calc(var(--lh) * 4);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--dim) var(--bar);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+.terminal-output::-webkit-scrollbar { width: 1ch; }
+.terminal-output::-webkit-scrollbar-track { background: var(--bar); }
+.terminal-output::-webkit-scrollbar-thumb { background: var(--dim); }
 .terminal-output > * { margin-bottom: var(--lh); }
+.terminal-output > :last-child { margin-bottom: 0; }
 .terminal-output .terminal-command { margin-bottom: 0; }
 .terminal-output pre {
   margin-bottom: var(--lh);
@@ -337,6 +348,8 @@ body:has(#contact:target) .w-contact::after { content: "*"; }
    -------------------------------------------------------------------------- */
 @media (max-width: 760px) {
   :root { --fs: 13px; --lh: 22px; }
+
+  .terminal-output { height: calc(var(--lh) * 2); }
 
   .win.hero, .win.split { grid-template-columns: minmax(0, 1fr); }
   .win > .pane + .pane { border-left: 1px solid var(--border); border-top: 0; }
