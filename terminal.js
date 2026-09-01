@@ -129,7 +129,7 @@
 
       case "ls":
         if (!args.length) block("about.md  account.txt  contact.txt  interests/  repositories@", "terminal-link");
-        else if (/^(~\/)?interests\/?$/.test(args[0])) block("Automation/  Clusters/  Docker/  High availability/  Incus/  LXD/  Podman/  Snapcraft/", "terminal-link");
+        else if (/^(~\/)?interests\/?$/.test(args[0])) block("AI/  Automation/  Clusters/  Docker/  High availability/  Incus/  LXD/  Podman/  Snapcraft/", "terminal-link");
         else line("terminal-error", "ls: cannot access '" + args.join(" ") + "': No such file or directory");
         break;
 
