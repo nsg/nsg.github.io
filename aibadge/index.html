@@ -266,7 +266,7 @@
     }
 
     .guide {
-      margin-top: clamp(4rem, 9vw, 7rem);
+      margin-bottom: clamp(4rem, 9vw, 7rem);
     }
 
     .panel {
@@ -284,8 +284,6 @@
     }
     .panel h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); letter-spacing: -0.04em; line-height: 1.08; }
     .panel > p:not(.panel__eyebrow) { margin: 1rem 0 0; color: var(--muted); }
-
-    .fine-print { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--quiet); font-size: 0.8rem; }
 
     footer {
       display: flex;
@@ -412,6 +410,16 @@
       </div>
     </section>
 
+    <section class="guide wrap" aria-label="How I think about AI usage disclosure">
+      <article class="panel">
+        <p class="panel__eyebrow">My take</p>
+        <h2>Disclosure beats guesswork.</h2>
+        <p>These badges describe my process, not the quality of the software. Human-written code can be poor, and AI-written code can be excellent. What matters is whether the result is well designed, tested, reviewed, secure, and fit for its purpose.</p>
+        <p>Who typed the code is only one part of how software gets made. I might write it myself, generate parts with AI, or pay someone else to implement it. None of those paths determines the quality of the result. The badge simply makes my role and the role of AI more visible.</p>
+        <p>For every level except vibe-coded, assume that I was involved to the degree described, from writing code directly to shaping the architecture, directing the work, and reviewing the result. Vibe-coded signals that the generated implementation has not received meaningful human quality control.</p>
+      </article>
+    </section>
+
     <section class="wrap" id="levels" aria-label="AI usage levels">
       <div class="levels">
         <article class="level level--no" id="no">
@@ -489,16 +497,6 @@
           </div>
         </article>
       </div>
-    </section>
-
-    <section class="guide wrap" aria-label="How I think about AI usage disclosure">
-      <article class="panel">
-        <p class="panel__eyebrow">My take</p>
-        <h2>Disclosure beats guesswork.</h2>
-        <p>I use these badges to say something concrete about my process. A badge is not a verdict on the software: human-written code can be poor, and AI-written code can appear to work. The useful distinction is how the work was produced and how much human understanding stands behind it.</p>
-        <p>The scale considers committed implementation, not prompt count, a particular model, dependencies, or incidental AI research. It is intentionally self-reported and personal, not a universal standard or independent certification.</p>
-        <p class="fine-print">The definitions use “I” because they describe my repositories. A team adopting the idea should interpret the label across the contributors and use “we” in its own explanation.</p>
-      </article>
     </section>
 
     <p class="visually-hidden" id="copy-status" aria-live="polite"></p>
