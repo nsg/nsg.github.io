@@ -6,6 +6,7 @@
   var form = document.getElementById("terminal-form");
   var input = document.getElementById("terminal-input");
   var output = document.getElementById("terminal-output");
+  var scrollPane = form && form.closest(".pane-scroll");
   if (!form || !input || !output) return;
 
   var history = [];
@@ -14,6 +15,10 @@
     "help", "about", "contact", "whoami", "pwd", "ls", "cat", "nsg",
     "github", "history", "theme", "date", "uname", "echo", "cd", "clear"
   ];
+
+  function scrollToPrompt() {
+    if (scrollPane) scrollPane.scrollTop = scrollPane.scrollHeight;
+  }
 
   function line(className, text) {
     var element = document.createElement("p");
@@ -196,7 +201,7 @@
     input.value = "";
     run(command);
     while (output.childElementCount > 80) output.firstElementChild.remove();
-    output.scrollTop = output.scrollHeight;
+    scrollToPrompt();
     if (!/^cd(?:\s|$)/i.test(command.trim())) input.scrollIntoView({ block: "nearest" });
   });
 
@@ -218,12 +223,13 @@
     } else if (event.ctrlKey && event.key.toLowerCase() === "l") {
       event.preventDefault();
       output.replaceChildren();
+      scrollToPrompt();
     } else if (event.ctrlKey && event.key.toLowerCase() === "c") {
       event.preventDefault();
       commandLine(input.value + "^C");
       input.value = "";
       historyIndex = history.length;
-      output.scrollTop = output.scrollHeight;
+      scrollToPrompt();
     }
   });
 })();
